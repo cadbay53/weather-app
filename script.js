@@ -12,7 +12,7 @@
 
 async function fetchLocationData() {
   const cityName = document.querySelector("#searchPlace").value;
-  const locationApiurl = `http://cadbay-api.cadbay.in/location-data?city_name=${cityName}`;
+  const locationApiurl = `https://cadbay-api.cadbay.in/location-data?city_name=${cityName}`;
   // const locationApiurl = `http://127.0.0.1:5000/location-data?city_name=${cityName}`;
   //   console.log(locationApiurl);
   //   console.log(cityName);
