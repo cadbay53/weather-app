@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: aliceblue;
+}
+
+h1 {
+  /* background-color: grey; */
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+}
+/* To align h1 text in center, set display to flex and then justify contents to center */
+
+.input-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  height: 8%;
+  /* background-color: grey; */
+}
+
+.input-group .searchIt {
+  width: 50%;
+  /* margin: 0; */
+  border: 1px solid;
+  border-right: none;
+  border-radius: 2px 3px;
+  padding-left: 10px;
+  font-size: 120%;
+}
+
+@media (width: 375px) {
+  h1 {
+    /* background-color: grey; */
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    font-size: 150%;
+  }
+
+  .input-group {
+    display: flex;
+    height: 4%;
+    margin: 40px 10px 5px 10px;
+  }
+
+  .input-group .searchIt {
+    width: 70%;
+    margin-right: 0;
+    border: 1px solid;
+    border-right: none;
+    border-radius: 2px 3px;
+    font-size: 90%;
+  }
+
+  .searchBtn {
+    margin-left: 0;
+    border: 1px solid;
+  }
+}

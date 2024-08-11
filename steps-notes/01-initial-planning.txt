@@ -1,0 +1,15 @@
+openweather-api-key : 819780df507d9ca7db5741734f4ebbcb
+
+what all I need to implement in this app?
+
+    1.  A search bar with placeholder Address, City or Zip Code
+
+    2.  A component which displays temperature with some weather details
+
+    3.  A good looking component
+
+
+
+    -   Trying to find a way to give an api call by city name and get suggestions
+
+    -   Figure out how to implement a search autocomplete for places through an api 
