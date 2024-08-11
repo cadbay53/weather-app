@@ -10,6 +10,12 @@ what all I need to implement in this app?
 
 
 
-    -   Trying to find a way to give an api call by city name and get suggestions
+achieved
 
-    -   Figure out how to implement a search autocomplete for places through an api 
+    -   a responsive ui
+    -   api is fetching data properly
+    -   
+
+todo:
+
+    -   a suggestion box below the search bar
