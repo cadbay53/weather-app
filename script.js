@@ -52,7 +52,7 @@ searchIcon.addEventListener("keydown", () => {
 
 async function fetchLocationData() {
   const cityName = document.querySelector("#input-box").value;
-  const locationApiurl = `https://cadbay-api.cadbay.in/location-data?city_name=${cityName}`;
+  const locationApiurl = `api url`;
   // const locationApiurl = `http://127.0.0.1:5000/location-data?city_name=${cityName}`;
 
   try {
