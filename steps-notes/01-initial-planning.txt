@@ -14,8 +14,37 @@ achieved
 
     -   a responsive ui
     -   api is fetching data properly
-    -   
+    -   deployed flask api on ec2
+    -   bought domain and running api on cadbay-api.cadbay.in
+    -   added cors(app) to flask app
+    -   location data is successfully bieng retrieved from the flask endpoint
+    -   a suggestion box below the search bar
 
 todo:
 
-    -   a suggestion box below the search bar
+    -   clicking on the location or the search button shows the weather forecast
+        component
+            -   fetch the data from weather api
+    -   make the app with mobile first approach
+
+
+do one by one
+
+
+    -   extract lon and lat data from the from the locationArray
+    -   then put the lon and lat in the weather api call
+    -   extract temp, clouds %, feels like
+    -   round of temp and feels like
+
+    -   save all of the code in the actual index, style and script files out of the
+        test folder
+
+
+Solve this
+
+    -   achieve some way of checking which result matches the name value of location array
+    -   and then fetch the weather of that location
+    -   don't show the options below the search box
+
+
+
