@@ -4,7 +4,121 @@
   font-style: normal;
   /* font-weight: 350; */
   margin: 0;
-  padding: 0;
+  padding: 0;* {
+    box-sizing: border-box;
+    font-family: "Noto Sans", sans-serif;
+    font-style: normal;
+    font-weight: 350;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    margin: 0;
+    background: #262a2f;
+    color: #333;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+  
+  header {
+    text-align: center;
+    max-width: 90%; 
+    margin: 30px auto;
+  }
+  
+  h1 {
+    font-size: 50px;
+    color: rgb(246, 246, 246);
+  }
+  
+  .search-box {
+    background-color: aliceblue;
+    margin: 43px auto 0;
+    max-width: 90%; 
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    padding: 20px; 
+  }
+  
+  .row {
+    display: flex;
+    align-items: center;
+    padding: 8px 20px;
+  }
+  
+  input {
+    flex: 1;
+    height: 50px;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 19px;
+  }
+  
+  button {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  .fa-magnifying-glass {
+    font-size: 30px;
+  }
+  
+  .result-box ul {
+    border-top: 2px solid #d5d5d5;
+    padding: 15px 10px;
+  }
+  
+  .result-box ul li {
+    padding: 15px 10px;
+    list-style: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .result-box ul li:hover {
+    background: #e9f3ff;
+  }
+  
+  .weather-componentRow {
+    height: 270px;
+    display: flex;
+    background-color: lightblue;
+    align-items: center;
+    max-width: 90%; 
+    border-radius: 15px;
+    margin: 50px auto; /* changed margin to ensure proper spacing */
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  }
+  
+  @media (max-width: 375px) {
+    header {
+      text-align: center;
+      max-width: 90%; 
+      margin: 40px auto;
+    }
+  
+    h1 {
+      font-size: 40px;
+    }
+  
+    .search-box {
+      max-width: 90%; 
+    }
+  
+    .weather-componentRow {
+      height: 270px;
+      display: flex;
+      background-color: lightblue;
+      align-items: center;
+      max-width: 90%; 
+      border-radius: 15px;
+      margin: 70px auto;
+    }
+  }
 }
 body {
   margin: 0;
