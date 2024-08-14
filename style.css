@@ -99,6 +99,23 @@ button {
 
   .weather-componentRow {
       max-width: 80%;
+<<<<<<< HEAD
+=======
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+      font-size: 30px;
+  }
+
+  .search-box {
+      max-width: 100%;
+  }
+
+  .weather-componentRow {
+      max-width: 100%;
+>>>>>>> 1c1d2657953fc6541bd28648b80fcdd3f09b6258
   }
 }
 
