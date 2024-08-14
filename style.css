@@ -14,7 +14,7 @@ body {
 
 header {
   text-align: center;
-  margin: 30px auto;
+  margin: 43px auto;
 }
 
 h1 {
@@ -24,16 +24,17 @@ h1 {
 
 .search-box {
   background-color: #fff;
-  margin: 43px auto 0;
-  max-width: 80%;
+  margin: 72px auto 0;
+  max-width: 60%;
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .row {
   display: flex;
   align-items: center;
-  padding: 8px 0;
+  padding: 8px 25px 8px 12px;
 }
 
 input {
@@ -81,7 +82,7 @@ button {
   display: flex;
   background-color: lightblue;
   align-items: center;
-  max-width: 80%;
+  max-width: 60%;
   border-radius: 15px;
   margin: 50px auto;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -93,11 +94,11 @@ button {
   }
 
   .search-box {
-    max-width: 80%;
+    max-width: 60%;
   }
 
   .weather-componentRow {
-    max-width: 80%;
+    max-width: 60%;
   }
 }
 
@@ -107,10 +108,24 @@ button {
   }
 
   .search-box {
-    max-width: 100%;
+    max-width: 85%;
   }
 
   .weather-componentRow {
-    max-width: 100%;
+    max-width: 85%;
+  }
+
+  @media (max-width: 375px) {
+    h1 {
+      font-size: 30px;
+    }
+
+    .search-box {
+      max-width: 85%;
+    }
+
+    .weather-componentRow {
+      max-width: 85%;
+    }
   }
 }
