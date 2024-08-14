@@ -15,7 +15,7 @@ let weatherData;
 // ----------------------------------------------------------------------------------------
 // Event listeners for different events
 searchBox.addEventListener("keyup", () => {
-  // if ()
+  weatherComponent.style.display = "none";
   const currentValue = searchBox.value.trim();
   // different logic for different search box situations (took help from gpt)
   if (currentValue === "") {
