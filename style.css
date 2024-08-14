@@ -25,7 +25,7 @@ h1 {
 .search-box {
   background-color: #fff;
   margin: 43px auto 0;
-  max-width: 60%;
+  max-width: 40%;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -79,9 +79,9 @@ button {
   display: flex;
   background-color: lightblue;
   align-items: center;
-  max-width: 60%;
+  max-width: 40%;
   border-radius: 15px;
-  margin: 72px auto;
+  margin: 43px auto;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
