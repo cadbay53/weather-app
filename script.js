@@ -4,6 +4,8 @@
 
 const searchBox = document.querySelector("#input-box");
 const searchIcon = document.querySelector("#icon");
+const weatherComponent = document.querySelector(".weather-componentRow");
+const resultBox = document.querySelector(".result-box");
 
 let timeout = null;
 let previousValue = "";
@@ -46,13 +48,20 @@ searchBox.addEventListener("keyup", () => {
 });
 
 searchIcon.addEventListener("click", () => {
-  fetchWeatherData(locationArray);
+  fetchWeatherData(locationArray).then((data) => {
+    weatherData = data;
+    // console.log(weatherData);
+    displayWeatherComponent(weatherData);
+  });
 });
 
 searchBox.addEventListener("keyup", (e) => {
   if (event.key === "Enter" || event.keyCode === 13) {
-    weatherData = fetchWeatherData(locationArray);
-    // displayWeatherComponent(weatherData);
+    fetchWeatherData(locationArray).then((data) => {
+      weatherData = data;
+      // console.log(weatherData);
+      displayWeatherComponent(weatherData);
+    });
   }
 });
 
@@ -85,7 +94,7 @@ async function fetchLocationData() {
       (elem, index) =>
         locationArray.findIndex((obj) => obj.name === elem.name) === index
     );
-    // console.log(uniqueLocationArray);
+    console.log(uniqueLocationArray);
     return uniqueLocationArray;
   } catch (error) {
     console.log(error.message);
@@ -97,8 +106,7 @@ async function fetchLocationData() {
 
 async function fetchWeatherData(locationArray, event) {
   let locationDetails;
-  let latitude;
-  let longitude;
+
   // console.log(locationArray);
 
   if (event) {
@@ -111,11 +119,12 @@ async function fetchWeatherData(locationArray, event) {
   } else {
     locationDetails = locationArray[0];
   }
-  latitude = locationDetails.lat;
-  longitude = locationDetails.lon;
+  const latitude = locationDetails.lat;
+  const longitude = locationDetails.lon;
+  const cityName = locationDetails.name;
 
   // console.log(locationDetails);
-  const weatherApiurl = `https://cadbayw-api.cadbay.in/api-weather?lat=${latitude}&lon=${longitude}`;
+  const weatherApiurl = `https://cadbayw-api.cadbay.in/api-weather?lat=${latitude}&lon=${longitude}&city_name=${cityName}`;
   // const weatherApiurl = `http://127.0.0.1:5000/api-weather?lat=${latitude}&lon=${longitude}`;
 
   try {
@@ -126,7 +135,7 @@ async function fetchWeatherData(locationArray, event) {
 
     const weatherJson = await response.json();
 
-    console.log(weatherJson);
+    // console.log(weatherJson);
     return weatherJson;
   } catch (error) {
     console.log(error.message);
@@ -169,7 +178,11 @@ function display(resultArray) {
 
   liElements.forEach((li) => {
     li.addEventListener("click", (e) => {
-      fetchWeatherData(resultArray, e);
+      fetchWeatherData(locationArray, e).then((data) => {
+        weatherData = data;
+        // console.log(weatherData);
+        displayWeatherComponent(weatherData);
+      });
     });
   });
 }
@@ -183,4 +196,19 @@ function clearSearchList() {
 // -----------------------------------------------------------------------------------------
 // Function for displaying the forecast component
 
-// function
+function displayWeatherComponent(weatherData) {
+  console.log(weatherData);
+  resultBox.innerHTML = "";
+  weatherComponent.style.display = "flex";
+  const locationToDisplay = weatherData.city_name;
+  const temperatureToDisplay = weatherData.temperature;
+  const cloudStatusToDisplay = weatherData.clouds;
+
+  const locationElem = document.querySelector(".weather-componentRow h1");
+  const temperatureElem = document.querySelector(".temperature");
+  const cloudsElem = document.querySelector(".cloudy");
+
+  locationElem.innerText = locationToDisplay;
+  temperatureElem.textContent = temperatureToDisplay + "\u00B0" + "C";
+  cloudsElem.innerText = cloudStatusToDisplay;
+}

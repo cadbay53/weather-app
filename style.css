@@ -19,6 +19,7 @@ header {
 }
 
 h1 {
+  /* text-align: center; */
   font-size: 50px;
   color: #f6f6f6;
 }
@@ -74,27 +75,35 @@ button {
   background: #e9f3ff;
 }
 
-.error-message {
-  display: flex;
-  background-color: red;
-}
-
-.error-message p {
-  text-align: center;
-  justify-content: center;
-  color: white;
-}
-
 .weather-componentRow {
   height: 100%;
   max-height: 50%;
   display: none;
+  flex-direction: column;
   background-color: lightblue;
+  /* justify-content: center; */
   align-items: center;
   max-width: 40%;
   border-radius: 15px;
   margin: 30px auto;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.weather-componentRow h1 {
+  margin-top: 45px;
+  color: #262a2f;
+  /* font-size: 35px; */
+}
+
+.weather-componentRow p.temperature {
+  margin-top: 10px;
+  justify-content: center;
+  font-size: 91px;
+}
+
+.weather-componentRow p.cloudy {
+  margin-top: 7px;
+  font-size: 21px;
 }
 
 @media (max-width: 768px) {
