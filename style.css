@@ -10,6 +10,7 @@ body {
   /* color: #fff; */
   font-weight: 400;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 header {
@@ -81,7 +82,7 @@ button {
   align-items: center;
   max-width: 40%;
   border-radius: 15px;
-  margin: 43px auto;
+  margin: 30px auto;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
@@ -109,7 +110,7 @@ button {
   }
 
   .search-box {
-    margin-top: 72px;
+    margin-top: 52px;
     max-width: 85%;
   }
 
@@ -125,11 +126,12 @@ button {
     }
 
     .search-box {
-      margin-top: 50px;
+      margin-top: 30px;
       max-width: 85%;
     }
 
     .weather-componentRow {
+      max-height: 50%;
       margin-top: 50px;
       max-width: 85%;
     }
