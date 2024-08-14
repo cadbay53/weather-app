@@ -20,7 +20,6 @@ searchBox.addEventListener("keyup", () => {
 
   if (currentValue === previousValue) {
     clearTimeout(timeout);
-    // clearSearchList();
     previousValue = currentValue;
     return;
   }
@@ -30,30 +29,41 @@ searchBox.addEventListener("keyup", () => {
   timeout = setTimeout(() => {
     fetchLocationData().then((data) => {
       locationArray = data;
-      // display(locationArray);
+      display(locationArray);
     });
     previousValue = currentValue;
-  }, 1000);
+  }, 500);
+  // fetchLocationData().then((data) => {
+  //   locationArray = data;
+  //   display(locationArray);
+  // });
+  // previousValue = currentValue;
 });
 
 const searchIcon = document.querySelector("#icon");
 
 searchIcon.addEventListener("click", () => {
-  fetchWeatherData(locationArray);
+  fetchWeatherDataBySearchButton(locationArray);
 });
 
-searchIcon.addEventListener("keydown", () => {
-  if (event.key == +"Enter") {
-    fetchWeatherData();
+searchBox.addEventListener("keyup", (e) => {
+  if (event.key === "Enter" || event.keyCode === 13) {
+    fetchWeatherDataBySearchButton(locationArray);
   }
 });
+
+// searchIcon.addEventListener("keydown", () => {
+//   if (event.key === "Enter") {
+//     fetchWeatherData();
+//   }
+// });
 // ------------------------------------------------------------------------------------
 // Function to fetch location data
 
 async function fetchLocationData() {
   const cityName = document.querySelector("#input-box").value;
-  const locationApiurl = `api url`;
-  // const locationApiurl = `http://127.0.0.1:5000/location-data?city_name=${cityName}`;
+  const locationApiurl = `https://cadbayw-api.cadbay.in/api-location?city_name=${cityName}`;
+  // const locationApiurl = `http://127.0.0.1:5000/api-location?city_name=${cityName}`;
 
   try {
     const response = await fetch(locationApiurl);
@@ -77,6 +87,33 @@ async function fetchLocationData() {
     console.log(error.message);
   }
 }
+
+// -----------------------------------------------------------------------------------------
+// Function to fetch weather data
+
+async function fetchWeatherDataBySearchButton(locationArray) {
+  const locationDetails = locationArray[0];
+  const latitude = locationDetails.lat;
+  const longitude = locationDetails.lon;
+
+  const weatherApiurl = `https://cadbayw-api.cadbay.in/api-weather?lat=${latitude}&lon=${longitude}`;
+  // const weatherApiurl = `http://127.0.0.1:5000/api-weather?lat=${latitude}&lon=${longitude}`;
+
+  try {
+    const response = await fetch(weatherApiurl);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const weatherJson = await response.json();
+
+    console.log(weatherJson);
+    return weatherJson;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 // -----------------------------------------------------------------------------------------
 // Function to append the location data list to the search box and empties the list if the
 // search box is emptied
@@ -91,13 +128,16 @@ function display(resultArray) {
   if (resultArray.length > 3) {
     for (i = 0; i < 4; i++) {
       const li = document.createElement("li");
+      li.id = "listItem-" + i;
       li.textContent = resultArray[i].name;
+      console.log(li);
       myUl.appendChild(li);
       resultBox.appendChild(myUl);
     }
   } else if (resultArray.length > 0) {
     for (i = 0; i < resultArray.length; i++) {
       const li = document.createElement("li");
+      li.id = "listItem-" + i;
       li.textContent = resultArray[i].name;
       myUl.appendChild(li);
       resultBox.appendChild(myUl);
@@ -113,11 +153,14 @@ function clearSearchList() {
 }
 
 // -----------------------------------------------------------------------------------------
-// Function for Clicking search button or pressing enter and fetching the weather forecast and displaying
-// the forecast component
+// Function for Clicking search button or pressing enter and fetching the weather forecast
+// and displaying the forecast component
 
-function fetchWeatherData(locationArray) {
-  console.log(locationArray);
-  // const locationData = locationArray[0];
-  // console.log[]
-}
+// function fetchWeatherDataBySearchButton(locationArray) {
+//   // console.log(locationArray);
+//   const locationDetails = locationArray[0];
+//   console.log(locationDetails);
+//   const name = locationDetails.name;
+//   const longitude = locationDetails.lon;
+//   const latitude = locationDetails.lat;
+// }
