@@ -74,10 +74,21 @@ button {
   background: #e9f3ff;
 }
 
+.error-message {
+  display: flex;
+  background-color: red;
+}
+
+.error-message p {
+  text-align: center;
+  justify-content: center;
+  color: white;
+}
+
 .weather-componentRow {
   height: 100%;
   max-height: 50%;
-  display: flex;
+  display: none;
   background-color: lightblue;
   align-items: center;
   max-width: 40%;

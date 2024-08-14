@@ -3,60 +3,59 @@
 // Logic for event listeners
 
 const searchBox = document.querySelector("#input-box");
+const searchIcon = document.querySelector("#icon");
 
 let timeout = null;
 let previousValue = "";
 let locationArray;
+let weatherData;
 
+// ----------------------------------------------------------------------------------------
+// Event listeners for different events
 searchBox.addEventListener("keyup", () => {
+  // if ()
   const currentValue = searchBox.value.trim();
   // different logic for different search box situations (took help from gpt)
   if (currentValue === "") {
-    clearTimeout(timeout);
+    // clearTimeout(timeout);
     clearSearchList();
     previousValue = currentValue;
     return;
   }
 
   if (currentValue === previousValue) {
-    clearTimeout(timeout);
+    // clearTimeout(timeout);
     previousValue = currentValue;
     return;
   }
 
-  clearTimeout(timeout);
+  // clearTimeout(timeout);
 
-  timeout = setTimeout(() => {
-    fetchLocationData().then((data) => {
-      locationArray = data;
-      display(locationArray);
-    });
-    previousValue = currentValue;
-  }, 500);
-  // fetchLocationData().then((data) => {
-  //   locationArray = data;
-  //   display(locationArray);
-  // });
-  // previousValue = currentValue;
+  // timeout = setTimeout(() => {
+  //   fetchLocationData().then((data) => {
+  //     locationArray = data;
+  //     display(locationArray);
+  //   });
+  //   previousValue = currentValue;
+  // }, 500);
+  fetchLocationData().then((data) => {
+    locationArray = data;
+    display(locationArray);
+  });
+  previousValue = currentValue;
 });
 
-const searchIcon = document.querySelector("#icon");
-
 searchIcon.addEventListener("click", () => {
-  fetchWeatherDataBySearchButton(locationArray);
+  fetchWeatherData(locationArray);
 });
 
 searchBox.addEventListener("keyup", (e) => {
   if (event.key === "Enter" || event.keyCode === 13) {
-    fetchWeatherDataBySearchButton(locationArray);
+    weatherData = fetchWeatherData(locationArray);
+    // displayWeatherComponent(weatherData);
   }
 });
 
-// searchIcon.addEventListener("keydown", () => {
-//   if (event.key === "Enter") {
-//     fetchWeatherData();
-//   }
-// });
 // ------------------------------------------------------------------------------------
 // Function to fetch location data
 
@@ -82,7 +81,12 @@ async function fetchLocationData() {
       };
     });
     // console.log(locationArray);
-    return locationArray;
+    const uniqueLocationArray = locationArray.filter(
+      (elem, index) =>
+        locationArray.findIndex((obj) => obj.name === elem.name) === index
+    );
+    // console.log(uniqueLocationArray);
+    return uniqueLocationArray;
   } catch (error) {
     console.log(error.message);
   }
@@ -91,11 +95,26 @@ async function fetchLocationData() {
 // -----------------------------------------------------------------------------------------
 // Function to fetch weather data
 
-async function fetchWeatherDataBySearchButton(locationArray) {
-  const locationDetails = locationArray[0];
-  const latitude = locationDetails.lat;
-  const longitude = locationDetails.lon;
+async function fetchWeatherData(locationArray, event) {
+  let locationDetails;
+  let latitude;
+  let longitude;
+  // console.log(locationArray);
 
+  if (event) {
+    const locationClicked = event.target.textContent;
+    // console.log(locationClicked);
+    const indexLocation = locationArray.findIndex(
+      (obj) => obj.name === locationClicked
+    );
+    locationDetails = locationArray[indexLocation];
+  } else {
+    locationDetails = locationArray[0];
+  }
+  latitude = locationDetails.lat;
+  longitude = locationDetails.lon;
+
+  // console.log(locationDetails);
   const weatherApiurl = `https://cadbayw-api.cadbay.in/api-weather?lat=${latitude}&lon=${longitude}`;
   // const weatherApiurl = `http://127.0.0.1:5000/api-weather?lat=${latitude}&lon=${longitude}`;
 
@@ -130,7 +149,7 @@ function display(resultArray) {
       const li = document.createElement("li");
       li.id = "listItem-" + i;
       li.textContent = resultArray[i].name;
-      console.log(li);
+      // console.log(li);
       myUl.appendChild(li);
       resultBox.appendChild(myUl);
     }
@@ -145,22 +164,23 @@ function display(resultArray) {
   } else {
     resultBox.innerHTML = "";
   }
+
+  const liElements = document.querySelectorAll("li");
+
+  liElements.forEach((li) => {
+    li.addEventListener("click", (e) => {
+      fetchWeatherData(resultArray, e);
+    });
+  });
 }
 
 function clearSearchList() {
   const resultBox = document.querySelector(".result-box");
   resultBox.innerHTML = "";
+  pElement.innerText = "";
 }
 
 // -----------------------------------------------------------------------------------------
-// Function for Clicking search button or pressing enter and fetching the weather forecast
-// and displaying the forecast component
+// Function for displaying the forecast component
 
-// function fetchWeatherDataBySearchButton(locationArray) {
-//   // console.log(locationArray);
-//   const locationDetails = locationArray[0];
-//   console.log(locationDetails);
-//   const name = locationDetails.name;
-//   const longitude = locationDetails.lon;
-//   const latitude = locationDetails.lat;
-// }
+// function
